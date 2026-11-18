@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Thiệp Mời Lễ Tốt Nghiệp - Lâm Thị Quy</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -110,6 +110,7 @@
       color: var(--dark-pink);
       margin-bottom: 8px;
     }
+
     .envelope-sub {
       font-size: 0.95rem;
       color: var(--text-muted);
@@ -133,6 +134,13 @@
     .btn-open:hover {
       transform: scale(1.05);
       box-shadow: 0 10px 25px rgba(255, 77, 136, 0.45);
+    }
+
+    .mobile-tip {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 16px;
+      line-height: 1.4;
     }
 
     /* Main Container */
@@ -211,4 +219,67 @@
       border: 2px dashed #FF9EBB;
       border-radius: 22px;
       padding: 20px 16px;
-      margin:
+      margin: 18px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .info-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text-main);
+      flex-wrap: wrap;
+    }
+
+    .info-icon {
+      font-size: 1.3rem;
+    }
+
+    /* Countdown */
+    .countdown-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin: 22px 0;
+    }
+
+    .time-box {
+      background: linear-gradient(180deg, #FFF 0%, #FFE6EF 100%);
+      border: 2px solid #FFB3C6;
+      border-radius: 18px;
+      padding: 12px 6px;
+    }
+
+    .time-num {
+      font-size: 1.55rem;
+      font-weight: 700;
+      color: var(--dark-pink);
+      display: block;
+    }
+
+    .time-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    /* Action Buttons */
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 14px;
+    }
+
+    .btn-pink {
+      background: var(--primary-pink);
+      color: #fff;
+      border: none;
+      border-radius: 999px;
+      padding: 11
