@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>Thiệp Mời Lễ Tốt Nghiệp - Lâm Thị Quy</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,13 +19,23 @@
       --text-muted: #8E6474;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+    /* ================================
+       MOBILE FIRST OPTIMIZATION
+    ================================ */
+
+    /* Tránh tràn ngang */
+    html {
+      width: 100%;
+      overflow-x: hidden;
+      -webkit-text-size-adjust: 100%;
+      scroll-behavior: smooth;
     }
 
     body {
+      width: 100%;
+      min-width: 320px;
+      overflow-x: hidden;
+      -webkit-tap-highlight-color: transparent;
       font-family: 'Quicksand', sans-serif;
       background-color: var(--bg-pink);
       background-image: radial-gradient(#FFC2D6 1.5px, transparent 1.5px), radial-gradient(#FFE0EB 1.5px, #FFF0F5 1.5px);
@@ -33,35 +43,217 @@
       background-position: 0 0, 18px 18px;
       color: var(--text-main);
       min-height: 100vh;
-      overflow-x: hidden;
       position: relative;
     }
 
-    /* Floating Hearts & Petals */
-    .floating-bg {
+    /* Tối ưu vùng an toàn của điện thoại */
+    .container {
+      width: 100%;
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 24px 14px calc(40px + env(safe-area-inset-bottom));
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Card co giãn */
+    .card {
+      background: var(--card-bg);
+      border: 2.5px solid #FFC2D6;
+      width: 100%;
+      padding: clamp(20px, 5vw, 32px) clamp(14px, 4vw, 24px);
+      border-radius: 26px;
+      margin-bottom: 18px;
+      box-shadow: 0 14px 36px rgba(255, 107, 157, 0.16);
+      text-align: center;
+      position: relative;
+    }
+
+    .badge {
+      display: inline-block;
+      background: var(--soft-pink);
+      color: var(--dark-pink);
+      font-weight: 700;
+      font-size: 0.82rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 999px;
+      margin-bottom: 14px;
+    }
+
+    /* Tiêu đề tự co giãn */
+    .main-heading {
+      font-family: 'Dancing Script', cursive;
+      font-size: clamp(2.1rem, 9vw, 2.8rem);
+      line-height: 1.2;
+      color: var(--dark-pink);
+      margin-bottom: 6px;
+    }
+
+    .graduate-name {
+      font-size: clamp(1.35rem, 6vw, 1.85rem);
+      font-weight: 700;
+      color: #FF4D88;
+      margin: 10px 0 18px;
+      text-shadow: 0 2px 10px rgba(255, 107, 157, 0.2);
+      overflow-wrap: anywhere;
+    }
+
+    .envelope-title {
+      font-family: 'Dancing Script', cursive;
+      font-size: clamp(1.8rem, 8vw, 2.2rem);
+      color: var(--dark-pink);
+      margin-bottom: 8px;
+    }
+
+    /* Thông tin buổi lễ */
+    .core-info {
+      background: #FFF5F8;
+      border: 2px dashed #FF9EBB;
+      border-radius: 22px;
+      padding: 16px 10px;
+      margin: 18px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .info-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: clamp(0.85rem, 3.6vw, 1.05rem);
+      font-weight: 600;
+      line-height: 1.5;
+      color: var(--text-main);
+      flex-wrap: wrap;
+      text-align: center;
+    }
+
+    .info-icon {
+      font-size: 1.3rem;
+    }
+
+    /* Countdown */
+    .countdown-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: clamp(5px, 2vw, 10px);
+      margin: 22px 0;
+    }
+
+    .time-box {
+      background: linear-gradient(180deg, #FFF 0%, #FFE6EF 100%);
+      border: 2px solid #FFB3C6;
+      min-width: 0;
+      padding: 12px 3px;
+      border-radius: 14px;
+    }
+
+    .time-num {
+      font-size: clamp(1.1rem, 5.5vw, 1.55rem);
+      font-weight: 700;
+      color: var(--dark-pink);
+      display: block;
+    }
+
+    .time-label {
+      font-size: clamp(0.65rem, 2.8vw, 0.78rem);
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    /* Nút bấm thân thiện với cảm ứng */
+    button,
+    .btn-pink,
+    .btn-outline,
+    select {
+      min-height: 46px;
+      touch-action: manipulation;
+    }
+
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-top: 14px;
+    }
+
+    .btn-pink {
+      background: var(--primary-pink);
+      color: #fff;
+      border: none;
+      border-radius: 999px;
+      justify-content: center;
+      max-width: 100%;
+      padding: 12px 17px;
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 700;
+      font-size: 0.88rem;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 6px 14px rgba(255, 107, 157, 0.28);
+      transition: transform 0.2s, background 0.2s;
+    }
+
+    .btn-pink:hover {
+      background: #FF4D88;
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background: #fff;
+      color: var(--dark-pink);
+      border: 2px solid #FF9EBB;
+      border-radius: 999px;
+      justify-content: center;
+      max-width: 100%;
+      padding: 12px 17px;
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 700;
+      font-size: 0.88rem;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: transform 0.2s, background 0.2s;
+    }
+
+    .btn-outline:hover {
+      background: #FFF0F5;
+      transform: translateY(-2px);
+    }
+
+    /* Nút nhạc */
+    .music-btn {
       position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-      overflow: hidden;
+      top: calc(10px + env(safe-area-inset-top));
+      right: 10px;
+      z-index: 1001;
+      background: #fff;
+      border: 2px solid #FFB3C6;
+      color: var(--dark-pink);
+      border-radius: 999px;
+      padding: 9px 13px;
+      min-height: 42px;
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 700;
+      font-size: 0.78rem;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(255, 107, 157, 0.2);
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
 
-    .floater {
-      position: absolute;
-      bottom: -40px;
-      font-size: 20px;
-      opacity: 0.65;
-      animation: floatUp linear infinite;
-    }
-
-    @keyframes floatUp {
-      0% { transform: translateY(0) rotate(0deg); opacity: 0; }
-      15% { opacity: 0.7; }
-      85% { opacity: 0.7; }
-      100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
-    }
-
-    /* Envelope Cover Overlay */
+    /* Phong bì */
     #envelope-overlay {
       position: fixed;
       inset: 0;
@@ -84,10 +276,10 @@
     .envelope-box {
       background: #FFF;
       border: 3px solid #FF9EBB;
-      border-radius: 28px;
-      padding: 36px 28px;
-      max-width: 400px;
       width: 100%;
+      max-width: 400px;
+      padding: 30px 20px;
+      border-radius: 24px;
       text-align: center;
       box-shadow: 0 18px 40px rgba(255, 107, 157, 0.25);
       animation: bounceSlow 2.5s infinite ease-in-out;
@@ -102,13 +294,6 @@
       font-size: 56px;
       margin-bottom: 12px;
       display: inline-block;
-    }
-
-    .envelope-title {
-      font-family: 'Dancing Script', cursive;
-      font-size: 2.2rem;
-      color: var(--dark-pink);
-      margin-bottom: 8px;
     }
 
     .envelope-sub {
@@ -129,6 +314,9 @@
       cursor: pointer;
       box-shadow: 0 8px 20px rgba(255, 77, 136, 0.35);
       transition: transform 0.2s, box-shadow 0.2s;
+      min-height: 48px;
+      max-width: 100%;
+      width: 100%;
     }
 
     .btn-open:hover {
@@ -136,186 +324,14 @@
       box-shadow: 0 10px 25px rgba(255, 77, 136, 0.45);
     }
 
-    /* Main Container */
-    .container {
-      position: relative;
-      z-index: 1;
-      max-width: 640px;
-      margin: 0 auto;
-      padding: 28px 16px 60px;
-    }
-
-    /* Music Toggle */
-    .music-btn {
-      position: fixed;
-      top: 16px;
-      right: 16px;
-      z-index: 50;
-      background: #fff;
-      border: 2px solid #FFB3C6;
-      color: var(--dark-pink);
-      border-radius: 999px;
-      padding: 8px 14px;
-      font-family: 'Quicksand', sans-serif;
-      font-weight: 700;
-      font-size: 0.85rem;
-      cursor: pointer;
-      box-shadow: 0 4px 12px rgba(255, 107, 157, 0.2);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    /* Main Card */
-    .card {
-      background: var(--card-bg);
-      border: 2.5px solid #FFC2D6;
-      border-radius: 32px;
-      padding: 32px 24px;
-      box-shadow: 0 14px 36px rgba(255, 107, 157, 0.16);
-      margin-bottom: 22px;
-      text-align: center;
-      position: relative;
-    }
-
-    .badge {
-      display: inline-block;
-      background: var(--soft-pink);
-      color: var(--dark-pink);
-      font-weight: 700;
-      font-size: 0.82rem;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      padding: 6px 16px;
-      border-radius: 999px;
-      margin-bottom: 14px;
-    }
-
-    .main-heading {
-      font-family: 'Dancing Script', cursive;
-      font-size: 2.8rem;
-      color: var(--dark-pink);
-      line-height: 1.2;
-      margin-bottom: 6px;
-    }
-
-    .graduate-name {
-      font-size: 1.85rem;
-      font-weight: 700;
-      color: #FF4D88;
-      margin: 10px 0 18px;
-      text-shadow: 0 2px 10px rgba(255, 107, 157, 0.2);
-    }
-
-    .core-info {
-      background: #FFF5F8;
-      border: 2px dashed #FF9EBB;
-      border-radius: 22px;
-      padding: 20px 16px;
-      margin: 18px 0;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .info-row {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      font-size: 1.05rem;
-      font-weight: 600;
-      color: var(--text-main);
-      flex-wrap: wrap;
-    }
-
-    .info-icon {
-      font-size: 1.3rem;
-    }
-
-    /* Countdown */
-    .countdown-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
-      margin: 22px 0;
-    }
-
-    .time-box {
-      background: linear-gradient(180deg, #FFF 0%, #FFE6EF 100%);
-      border: 2px solid #FFB3C6;
-      border-radius: 18px;
-      padding: 12px 6px;
-    }
-
-    .time-num {
-      font-size: 1.55rem;
-      font-weight: 700;
-      color: var(--dark-pink);
-      display: block;
-    }
-
-    .time-label {
-      font-size: 0.78rem;
-      font-weight: 600;
+    .mobile-tip {
+      font-size: 0.8rem;
       color: var(--text-muted);
+      margin-top: 16px;
+      line-height: 1.4;
     }
 
-    /* Action Buttons */
-    .btn-group {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      justify-content: center;
-      margin-top: 14px;
-    }
-
-    .btn-pink {
-      background: var(--primary-pink);
-      color: #fff;
-      border: none;
-      border-radius: 999px;
-      padding: 11px 20px;
-      font-family: 'Quicksand', sans-serif;
-      font-weight: 700;
-      font-size: 0.92rem;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      box-shadow: 0 6px 14px rgba(255, 107, 157, 0.28);
-      transition: transform 0.2s, background 0.2s;
-    }
-
-    .btn-pink:hover {
-      background: #FF4D88;
-      transform: translateY(-2px);
-    }
-
-    .btn-outline {
-      background: #fff;
-      color: var(--dark-pink);
-      border: 2px solid #FF9EBB;
-      border-radius: 999px;
-      padding: 9px 18px;
-      font-family: 'Quicksand', sans-serif;
-      font-weight: 700;
-      font-size: 0.92rem;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      transition: transform 0.2s, background 0.2s;
-    }
-
-    .btn-outline:hover {
-      background: #FFF0F5;
-      transform: translateY(-2px);
-    }
-
-    /* Section Title */
+    /* Bản đồ */
     .sec-title {
       font-family: 'Dancing Script', cursive;
       font-size: 2rem;
@@ -323,17 +339,23 @@
       margin-bottom: 14px;
     }
 
-    /* Map */
     .map-frame {
+      height: clamp(190px, 58vw, 260px);
       width: 100%;
-      height: 230px;
       border: 2px solid #FFC2D6;
       border-radius: 20px;
       overflow: hidden;
       margin-bottom: 14px;
     }
 
-    /* RSVP & Wishes Form */
+    .map-frame iframe {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* Form */
     .form-group {
       margin-bottom: 12px;
       text-align: left;
@@ -349,11 +371,12 @@
 
     .form-control {
       width: 100%;
-      padding: 11px 14px;
-      border-radius: 16px;
+      min-height: 46px;
+      font-size: 16px; /* Tránh iPhone tự zoom khi nhập */
+      border-radius: 13px;
+      padding: 12px;
       border: 2px solid #FFD6E5;
       font-family: 'Quicksand', sans-serif;
-      font-size: 0.95rem;
       color: var(--text-main);
       background: #FFF9FB;
       outline: none;
@@ -364,13 +387,20 @@
       border-color: var(--primary-pink);
     }
 
+    textarea.form-control {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    /* Lời chúc */
     .wish-list {
       margin-top: 18px;
       display: flex;
       flex-direction: column;
       gap: 10px;
-      max-height: 260px;
+      max-height: 320px;
       overflow-y: auto;
+      overscroll-behavior: contain;
       text-align: left;
     }
 
@@ -379,6 +409,7 @@
       border: 1.5px solid #FFD6E5;
       border-radius: 16px;
       padding: 12px 14px;
+      overflow-wrap: anywhere;
     }
 
     .wish-header {
@@ -437,6 +468,82 @@
       transform: translateX(-50%) translateY(0);
       opacity: 1;
     }
+
+    /* Floating Background */
+    .floating-bg {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .floater {
+      position: absolute;
+      bottom: -40px;
+      font-size: 20px;
+      opacity: 0.65;
+      animation: floatUp linear infinite;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+      15% { opacity: 0.7; }
+      85% { opacity: 0.7; }
+      100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+    }
+
+    /* Giảm chuyển động nếu người dùng yêu cầu */
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* Điện thoại nhỏ */
+    @media (max-width: 380px) {
+      .container {
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+
+      .card {
+        padding: 20px 13px;
+        border-radius: 22px;
+      }
+
+      .btn-group {
+        flex-direction: column;
+      }
+
+      .btn-group > * {
+        width: 100%;
+      }
+
+      .envelope-box {
+        padding: 25px 16px;
+      }
+
+      .info-row {
+        gap: 5px;
+      }
+    }
+
+    /* Tablet */
+    @media (min-width: 768px) {
+      .container {
+        padding-top: 40px;
+      }
+
+      .card {
+        padding: 36px 30px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -451,6 +558,9 @@
       <div class="envelope-title">Thiệp Mời Tốt Nghiệp</div>
       <p class="envelope-sub">Gửi bạn một chiếc thiệp nhỏ xinh từ<br><strong>Lâm Thị Quy</strong> ✨</p>
       <button class="btn-open" onclick="openInvitation()">💌 Mở Thiệp Ngay</button>
+      <div class="mobile-tip">
+        💡 <i>Mẹo: Nếu xem bằng Zalo/Messenger, hãy bấm dấu <b>3 chấm (...)</b> góc phải chọn <b>Mở bằng trình duyệt</b> để có trải nghiệm tốt nhất nhé!</i>
+      </div>
     </div>
   </div>
 
@@ -510,10 +620,6 @@
       </p>
       <div class="map-frame">
         <iframe
-          width="100%"
-          height="100%"
-          frameborder="0"
-          style="border:0"
           src="https://maps.google.com/maps?q=Tr%C6%B0%E1%BB%9Dng%20%C4%90%E1%BA%A1i%20h%E1%BB%8Dc%20Khoa%20h%E1%BB%8Dc%20-%20%C4%90%E1%BA%A1i%20h%E1%BB%8Dc%20Th%C3%A1i%20Nguy%C3%AAn&t=&z=15&ie=UTF8&iwloc=&output=embed"
           allowfullscreen>
         </iframe>
@@ -544,7 +650,7 @@
         </div>
         <div class="form-group">
           <label>Lời chúc gửi đến Lâm Thị Quy 💌</label>
-          <textarea id="guest-wish" class="form-control" rows="3" placeholder="Chúc mừng tân cử nhân xinh đẹp..." required></textarea>
+          <textarea id="guest-wish" class="form-control" placeholder="Chúc mừng tân cử nhân xinh đẹp..." required></textarea>
         </div>
         <button type="submit" class="btn-pink" style="width: 100%; justify-content: center;">
           ✨ Gửi Xác Nhận & Lời Chúc
@@ -678,7 +784,7 @@
       }[m]));
     }
 
-    // Cute Pastel Confetti
+    // Optimized Confetti for Mobile
     const canvas = document.getElementById('confetti-canvas');
     const ctx = canvas.getContext('2d');
     let particles = [];
@@ -692,16 +798,16 @@
     resizeCanvas();
 
     function fireConfetti() {
-      for (let i = 0; i < 90; i++) {
+      for (let i = 0; i < 45; i++) {
         particles.push({
           x: canvas.width / 2 + (Math.random() - 0.5) * 140,
           y: canvas.height / 2,
-          vx: (Math.random() - 0.5) * 14,
-          vy: (Math.random() - 1.2) * 14,
-          size: 6 + Math.random() * 6,
+          vx: (Math.random() - 0.5) * 12,
+          vy: (Math.random() - 1.2) * 12,
+          size: 6 + Math.random() * 5,
           color: colors[Math.floor(Math.random() * colors.length)],
           rot: Math.random() * 360,
-          vRot: (Math.random() - 0.5) * 12
+          vRot: (Math.random() - 0.5) * 10
         });
       }
     }
@@ -767,220 +873,6 @@
       if (isPlaying) stopMusic();
       else startMusic();
     }
-    
-/* ================================
-   MOBILE FIRST OPTIMIZATION
-================================ */
-
-/* Tránh tràn ngang */
-html {
-  width: 100%;
-  overflow-x: hidden;
-  -webkit-text-size-adjust: 100%;
-  scroll-behavior: smooth;
-}
-
-body {
-  width: 100%;
-  min-width: 320px;
-  overflow-x: hidden;
-  -webkit-tap-highlight-color: transparent;
-}
-
-/* Tối ưu vùng an toàn của điện thoại */
-.container {
-  width: 100%;
-  max-width: 640px;
-  padding: 24px 14px calc(40px + env(safe-area-inset-bottom));
-}
-
-/* Card co giãn */
-.card {
-  width: 100%;
-  padding: clamp(20px, 5vw, 32px) clamp(14px, 4vw, 24px);
-  border-radius: 26px;
-  margin-bottom: 18px;
-}
-
-/* Tiêu đề tự co giãn */
-.main-heading {
-  font-size: clamp(2.1rem, 9vw, 2.8rem);
-  line-height: 1.2;
-}
-
-.graduate-name {
-  font-size: clamp(1.35rem, 6vw, 1.85rem);
-  overflow-wrap: anywhere;
-}
-
-.envelope-title {
-  font-size: clamp(1.8rem, 8vw, 2.2rem);
-}
-
-/* Thông tin buổi lễ */
-.core-info {
-  padding: 16px 10px;
-  gap: 14px;
-}
-
-.info-row {
-  font-size: clamp(0.85rem, 3.6vw, 1.05rem);
-  line-height: 1.5;
-  text-align: center;
-}
-
-/* Countdown */
-.countdown-grid {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: clamp(5px, 2vw, 10px);
-}
-
-.time-box {
-  min-width: 0;
-  padding: 12px 3px;
-  border-radius: 14px;
-}
-
-.time-num {
-  font-size: clamp(1.1rem, 5.5vw, 1.55rem);
-}
-
-.time-label {
-  font-size: clamp(0.65rem, 2.8vw, 0.78rem);
-}
-
-/* Nút bấm thân thiện với cảm ứng */
-button,
-.btn-pink,
-.btn-outline,
-select {
-  min-height: 46px;
-  touch-action: manipulation;
-}
-
-.btn-group {
-  gap: 10px;
-}
-
-.btn-pink,
-.btn-outline {
-  justify-content: center;
-  max-width: 100%;
-  padding: 12px 17px;
-  font-size: 0.88rem;
-}
-
-/* Nút nhạc */
-.music-btn {
-  top: calc(10px + env(safe-area-inset-top));
-  right: 10px;
-  z-index: 1001;
-  padding: 9px 13px;
-  min-height: 42px;
-  font-size: 0.78rem;
-}
-
-/* Phong bì */
-.envelope-box {
-  width: 100%;
-  max-width: 400px;
-  padding: 30px 20px;
-  border-radius: 24px;
-}
-
-.btn-open {
-  min-height: 48px;
-  max-width: 100%;
-}
-
-/* Bản đồ */
-.map-frame {
-  height: clamp(190px, 58vw, 260px);
-  width: 100%;
-}
-
-.map-frame iframe {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-
-/* Form */
-.form-control {
-  width: 100%;
-  min-height: 46px;
-  font-size: 16px; /* Tránh iPhone tự zoom khi nhập */
-  border-radius: 13px;
-  padding: 12px;
-}
-
-textarea.form-control {
-  min-height: 100px;
-  resize: vertical;
-}
-
-/* Lời chúc */
-.wish-list {
-  max-height: 320px;
-  overscroll-behavior: contain;
-}
-
-.wish-item {
-  overflow-wrap: anywhere;
-}
-
-/* Giảm chuyển động nếu người dùng yêu cầu */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    scroll-behavior: auto !important;
-    transition-duration: 0.01ms !important;
-  }
-}
-
-/* Điện thoại nhỏ */
-@media (max-width: 380px) {
-  .container {
-    padding-left: 10px;
-    padding-right: 10px;
-  }
-
-  .card {
-    padding: 20px 13px;
-    border-radius: 22px;
-  }
-
-  .btn-group {
-    flex-direction: column;
-  }
-
-  .btn-group > * {
-    width: 100%;
-  }
-
-  .envelope-box {
-    padding: 25px 16px;
-  }
-
-  .info-row {
-    gap: 5px;
-  }
-}
-
-/* Tablet */
-@media (min-width: 768px) {
-  .container {
-    padding-top: 40px;
-  }
-
-  .card {
-    padding: 36px 30px;
-  }
-}
-
   </script>
 </body>
 </html>
