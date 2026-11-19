@@ -334,21 +334,6 @@
     }
 
     /* RSVP & Wishes Form */
-    .rsvp-box {
-      background: #FFF5F8;
-      border: 2px dashed #FF9EBB;
-      border-radius: 22px;
-      padding: 20px 16px;
-      margin-bottom: 18px;
-    }
-
-    .rsvp-desc {
-      font-size: 0.94rem;
-      color: var(--text-main);
-      margin-bottom: 14px;
-      line-height: 1.5;
-    }
-
     .form-group {
       margin-bottom: 12px;
       text-align: left;
@@ -544,18 +529,6 @@
     <!-- RSVP & Wishes Card -->
     <div class="card">
       <h2 class="sec-title">💖 Xác Nhận & Gửi Lời Chúc</h2>
-
-      <div class="rsvp-box">
-        <p class="rsvp-desc">
-          Hãy điền vào Google Form để xác nhận tham dự và gửi lời chúc lưu giữ cho <strong>Lâm Thị Quy</strong> nhé! 🌸
-        </p>
-        <div class="btn-group" style="margin-top: 0;">
-          <a class="btn-pink" href="https://forms.gle/gFey7Vt1XK7wbHh76" target="_blank" rel="noopener noreferrer" onclick="fireConfetti()">
-            💌 Mở Form Xác Nhận Tham Dự
-          </a>
-        </div>
-      </div>
-
       <form id="rsvp-form" onsubmit="submitWish(event)">
         <div class="form-group">
           <label>Tên của bạn 🌸</label>
@@ -574,7 +547,7 @@
           <textarea id="guest-wish" class="form-control" rows="3" placeholder="Chúc mừng tân cử nhân xinh đẹp..." required></textarea>
         </div>
         <button type="submit" class="btn-pink" style="width: 100%; justify-content: center;">
-          ✨ Hiển Thị Lời Chúc & Mở Google Form Lưu Trữ
+          ✨ Gửi Xác Nhận & Lời Chúc
         </button>
       </form>
 
@@ -593,8 +566,6 @@
   <div class="toast" id="toast"></div>
 
   <script>
-    const GOOGLE_FORM_URL = 'https://forms.gle/gFey7Vt1XK7wbHh76';
-
     // Floating Cute Icons
     const floatingIcons = ['🌸', '💖', '✨', '🎀', '🌷', '🎓'];
     const bgContainer = document.getElementById('floating-bg');
@@ -677,7 +648,7 @@
       });
     }
 
-    // RSVP & Wish Wall + Open Google Form for persistent storage
+    // RSVP & Wish Wall
     function submitWish(e) {
       e.preventDefault();
       const name = document.getElementById('guest-name').value.trim();
@@ -698,8 +669,7 @@
       list.prepend(item);
       document.getElementById('rsvp-form').reset();
       fireConfetti();
-      showToast('💖 Đã thêm lời chúc! Đang mở Google Form để lưu...');
-      window.open(GOOGLE_FORM_URL, '_blank', 'noopener,noreferrer');
+      showToast('💖 Cảm ơn bạn đã gửi lời chúc!');
     }
 
     function escapeHTML(str) {
